@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\SauceRepository;
+use App\Repository\OignonRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: SauceRepository::class)]
-class Sauce
+#[ORM\Entity(repositoryClass: OignonRepository::class)]
+class Oignon
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,7 +18,7 @@ class Sauce
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $nom = null;
 
-    #[ORM\ManyToMany(targetEntity: Burger::class, mappedBy: 'sauces')]
+    #[ORM\ManyToMany(targetEntity: Burger::class, mappedBy: 'oignons')]
     private Collection $burgers;
 
     public function __construct()
@@ -55,7 +55,7 @@ class Sauce
     {
         if (!$this->burgers->contains($burger)) {
             $this->burgers->add($burger);
-            $burger->addSauce($this);
+            $burger->addOignon($this);
         }
 
         return $this;
@@ -64,7 +64,7 @@ class Sauce
     public function removeBurger(Burger $burger): static
     {
         if ($this->burgers->removeElement($burger)) {
-            $burger->removeSauce($this);
+            $burger->removeOignon($this);
         }
 
         return $this;

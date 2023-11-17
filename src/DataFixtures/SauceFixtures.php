@@ -1,8 +1,6 @@
 <?php
 namespace App\DataFixtures;
  
-use App\Entity\Pain;
-use App\Entity\Product;
 use App\Entity\Sauce;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
